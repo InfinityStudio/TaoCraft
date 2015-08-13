@@ -24,7 +24,8 @@ Build 1.7.10-10.13.4.1447-1.7.10:
 Build 1.8-11.14.3.1446:
 	LexManos: Copy over parent's modelSet value in variants as well.
 	LexManos: Bump version for new RB
-
+ 
+ 
 Build 1.7.10-10.13.4.1445-1.7.10:
 	LexManos: Bump version for new RB.
 
