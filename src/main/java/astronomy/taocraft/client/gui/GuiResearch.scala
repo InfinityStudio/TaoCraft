@@ -1,50 +1,73 @@
 package astronomy.taocraft.client.gui
 import net.minecraft.client.gui._;
 import org.lwjgl.input.Mouse;
+import net.minecraftforge.fml.client.config.GuiCheckBox;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.client.C10PacketCreativeInventoryAction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiScreenEvent.ActionPerformedEvent;
+import net.minecraftforge.common.MinecraftForge;
+import org.lwjgl.opengl.GL11;
 
 /**
  * @author xfeng
  */
-class GuiResearch extends GuiScreen
-{
-  var portstartX:Int = 0
-  var portstartY:Int = 0
-  def GuiResearch()
-  {
-    
-  }
-  override def drawScreen(mouseX:Int, mouseY:Int, partialTicks:Float) = 
-  {
-    transviewport(mouseX,mouseY);
-    super.drawScreen(mouseX, mouseY, partialTicks);
-    this.drawDefaultBackground
-  }
-  def transviewport(mouseX:Int, mouseY:Int) = 
-  {
-    if (Mouse.isButtonDown(0))
-            {
-                val k = (this.width - this.field_146555_f) / 2;
-                val l = (this.height - this.field_146557_g) / 2;
-                val i1 = k + 8;
-                val j1 = l + 17;
+class GuiResearch extends GuiScreen {
+	def portstartX = (width - frametextureX) / 2
+	def portstartY = (height - frametextureY) / 2
+	val frametextureX: Int = 256
+	val frametextureY: Int = 230
+	val mapportX: Int = 224
+	val mapportY: Int = 196
+	val framewidthX: Int = 8
+	val framewidthY: Int = 8
+	val frameResourceLocation = new ResourceLocation("textures/gui/gui_research.png");
+	var scale: Double = 1.0
+	var mouseXprevent: Int = 0
+	var mouseYprevent: Int = 0
+	var mapcutX = 0.0
+	var mapcutY = 0.0
+	def GuiResearch() {
 
-                if ((this.field_146554_D == 0 || this.field_146554_D == 1) && mouseX >= i1 && mouseX < i1 + 224 && mouseY >= j1 && mouseY < j1 + 155)
-                {
-                    if (this.field_146554_D == 0)
-                    {
-                        this.field_146554_D = 1;
-                    }
-                    else
-                    {
-                        this.field_146567_u -= (double)((float)(mouseX - this.field_146563_h) * this.field_146570_r);
-                        this.field_146566_v -= (double)((float)(mouseY - this.field_146564_i) * this.field_146570_r);
-                        this.field_146565_w = this.field_146569_s = this.field_146567_u;
-                        this.field_146573_x = this.field_146568_t = this.field_146566_v;
-                    }
+	}
+	override def drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) = {
+		transviewport(mouseX, mouseY);
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.drawDefaultBackground();
+		drawframe();
+		drawResearch();
+	}
+	def transviewport(mouseX: Int, mouseY: Int) = {
+		if (Mouse.isButtonDown(0)) {
+			val mapstartX = portstartX + framewidthX;
+			val mapstartY = portstartY + framewidthY;
 
-                    this.field_146563_h = mouseX;
-                    this.field_146564_i = mouseY;
-                }
-            }
-  }
+			if (mouseX >= mapstartX && mouseX < mapstartX + mapportX && mouseY >= mapstartY && mouseY < mapstartY + mapportY) {
+				mapcutX -= ((mouseX - mouseXprevent) * scale);
+				mapcutX = if (mapcutX < 0.0) 0.0 else if (mapcutX > 300.0) 300.0 else mapcutX
+				mapcutY -= ((mouseY - mouseYprevent) * scale);
+				mapcutY = if (mapcutY < 0.0) 0.0 else if (mapcutY > 300.0) 300.0 else mapcutY
+			}
+			this.mouseXprevent = mouseX;
+			this.mouseYprevent = mouseY;
+		}
+
+	}
+	def drawframe() = {
+		GlStateManager.enableBlend()
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		this.mc.getTextureManager().bindTexture(frameResourceLocation);
+		drawTexturedModalRect(portstartX, portstartY, 0, 0, frametextureX, frametextureY)
+	}
+	def drawResearch() = {
+		
+
+	}
 }

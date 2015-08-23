@@ -13,13 +13,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 /**
  * @author xfeng
  */
-@Mod(modid = "TaoCraft", name = "TaoCraft", version = "0.0.w", modLanguage = "scala")
+@Mod(modid = "taocraft", name = "TaoCraft", version = "0.0.w", modLanguage = "scala")
 object TaoCraft 
 {
   var events:ModEventHandler = new ModEventHandler;
   var guis:ModGuiHandler = new ModGuiHandler;
   @SidedProxy  (clientSide = "astronomy.taocraft.client.ClientProxy", serverSide = "astronomy.taocraft.server.ServerProxy" )
-   var proxy: CommonProxy=null;
+  var proxy: CommonProxy=null;
   @EventHandler
   def Preinit(e: FMLPreInitializationEvent ) = 
   {
