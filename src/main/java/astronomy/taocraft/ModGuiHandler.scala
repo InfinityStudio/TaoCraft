@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraft.client.gui.achievement._
-import astronomy.taocraft.client.gui.GuiResearch;
+import astronomy.taocraft.client.gui._;
 
 /**
  * @author xfeng
@@ -21,6 +21,9 @@ class ModGuiHandler extends IGuiHandler
     }
   def getClientGuiElement ( ID:Int, player:EntityPlayer, world:World, x:Int, y:Int, z:Int ) : Object =
     {
-      new GuiResearch;
+      ID match{
+        case 20=>new GuiResearch
+        case 999=>new GuiTest(null,Minecraft.getMinecraft.thePlayer.getStatFileWriter())
+      }
     }
 }

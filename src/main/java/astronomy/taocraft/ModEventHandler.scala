@@ -18,9 +18,8 @@ class ModEventHandler
         if(KeyBindings.mainresearch.isPressed())
             {
             System.out.println("ping");
-            var itemstack=Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem();
 
-              Minecraft.getMinecraft().thePlayer.openGui(TaoCraft, 20, null, 0, 0, 0);
+            Minecraft.getMinecraft().thePlayer.openGui(TaoCraft, 20, null, 0, 0, 0);
 
               
             }
