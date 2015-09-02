@@ -75,6 +75,7 @@ class GuiResearch extends GuiScreen {
 	def drawResearchs() = {
     GlStateManager.enableDepth()
     GlStateManager.depthFunc(GL11.GL_GEQUAL)
+    GlStateManager.translate(0.0,0.0,-200.0)
 		this.mc.getTextureManager().bindTexture(mapResourceLocation);
 		Gui.drawModalRectWithCustomSizedTexture(mapstartX, mapstartY, mapcutX, mapcutY, mapportX, mapportY,maptexturesize,maptexturesize);
     def drawResearchinport(r:Research) = {
@@ -94,6 +95,7 @@ class GuiResearch extends GuiScreen {
     GlStateManager.depthFunc(GL11.GL_LEQUAL)
     val rs = Researchs.researchlist()
     for(rd<-rs)drawResearchinport(rd)
-     
+    GlStateManager.popMatrix();
+    GlStateManager.enableRescaleNormal();
 	}
 }
