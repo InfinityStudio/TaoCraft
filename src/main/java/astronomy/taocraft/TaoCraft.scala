@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 object TaoCraft 
 {
   var events:ModEventHandler = new ModEventHandler;
-  var guis:ModGuiHandler = new ModGuiHandler;
   @SidedProxy  (clientSide = "astronomy.taocraft.client.ClientProxy", serverSide = "astronomy.taocraft.server.ServerProxy" )
   var proxy: CommonProxy=null;
   @EventHandler
@@ -30,7 +29,7 @@ object TaoCraft
   def init(e: FMLInitializationEvent ) = 
   {
     proxy.registerKeyBindings;
-    NetworkRegistry.INSTANCE.registerGuiHandler(this, guis);
+    NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy.guis);
   }
    
 

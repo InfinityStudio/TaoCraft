@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraft.client.gui.achievement._
 import astronomy.taocraft.client.gui._;
 
 /**
@@ -23,7 +22,7 @@ class ModGuiHandler extends IGuiHandler
     {
       ID match{
         case 20=>new GuiResearch
-        case 999=>new GuiTest(null,Minecraft.getMinecraft.thePlayer.getStatFileWriter())
+        case 999=>new GuiAchievements(null,Minecraft.getMinecraft.thePlayer.getStatFileWriter())
       }
     }
 }

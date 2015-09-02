@@ -6,8 +6,7 @@ package astronomy.taocraft
 class CommonProxy 
 {
   def registerKeyBindings()
-  {
-    
-    
+  {    
   }
+  val guis:ModGuiHandler = null;
 }

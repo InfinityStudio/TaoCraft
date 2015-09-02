@@ -12,4 +12,5 @@ class ClientProxy extends CommonProxy
   {
     KeyBindings.init();
   }
+  override val guis:ModGuiHandler = new ModGuiHandler;
 }
