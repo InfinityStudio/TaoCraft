@@ -94,6 +94,6 @@ class GuiResearch extends GuiScreen {
     GlStateManager.depthFunc(GL11.GL_LEQUAL)
     val rs = Researchs.researchlist()
     for(rd<-rs)drawResearchinport(rd)
-    
+     
 	}
 }
