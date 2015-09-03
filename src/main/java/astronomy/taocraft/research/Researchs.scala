@@ -7,9 +7,9 @@ object Researchs {
     defaultresearchlist();
   }
   def defaultresearchlist():List[Research] = {
-     new Research("taiji","taocraft.research.name.taiji","item.taiji",250,450)::
-     new Research("yuanqi","taocraft.research.name.yuanqi","item.yuanqi",230,400)::
-     new Research("bagua","taocraft.research.name.bagua","item.bagua",270,400)::
+     new Research("taiji","taocraft.research.name.taiji","apple",250,450)::
+     new Research("yuanqi","taocraft.research.name.yuanqi","iron",230,400)::
+     new Research("bagua","taocraft.research.name.bagua","seeds",270,400)::
      Nil;
   }
   def researchlinelist():List[Researchline] = {

@@ -10,6 +10,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.client.C10PacketCreativeInventoryAction;
 import net.minecraft.util.ResourceLocation;
@@ -31,8 +33,8 @@ class GuiResearch extends GuiScreen {
 	val mapportY: Int = 196
   val maptexturesize = 512
   val researchtexturesize = 26
-	val frameResourceLocation = new ResourceLocation("textures/gui/gui_research.png");
-	val mapResourceLocation = new ResourceLocation("textures/gui/gui_researchback.png");
+	val frameResourceLocation = new ResourceLocation("taocraft","textures/gui/gui_research.png");
+	val mapResourceLocation = new ResourceLocation("taocraft","textures/gui/gui_researchback.png");
 	var scale: Double = 1.0
 	var mouseXprevent: Int = 0
 	var mouseYprevent: Int = 0
@@ -91,8 +93,9 @@ class GuiResearch extends GuiScreen {
             Math.min(texturesize,Math.min(r.researchmapY+texturesize/2-mapcutY,mapcutY+mapportY-(r.researchmapY-texturesize/2)))
             )
       }
-      
-      drawTexturedModalRect(r.researchmapX-26/2-mapcutX+mapstartX,r.researchmapY-26/2-mapcutY+mapstartY,0,230,26,26)
+      drawTexturedModalRect(r.researchmapX-researchtexturesize/2-mapcutX+mapstartX,r.researchmapY-researchtexturesize/2-mapcutY+mapstartY,0,230,researchtexturesize,researchtexturesize)
+      GlStateManager.disableLighting(); //Forge: Make sure Lighting is disabled. Fixes MC-33065
+      this.itemRender.renderItemIntoGUI(new ItemStack(Items.cookie), r.researchmapX-16/2-mapcutX+mapstartX, r.researchmapY-16/2-mapcutY+mapstartY)
     }
     GlStateManager.depthFunc(GL11.GL_LEQUAL)
     val rs = Researchs.researchlist()
