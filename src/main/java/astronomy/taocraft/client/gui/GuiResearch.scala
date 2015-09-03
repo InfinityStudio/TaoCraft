@@ -46,7 +46,7 @@ class GuiResearch extends GuiScreen {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		drawDefaultBackground();
 		drawResearchs();
-		//drawframe();
+		drawframe();
 	}
 	def transviewport(mouseX: Int, mouseY: Int) = {
 		if (Mouse.isButtonDown(0)) {
@@ -66,8 +66,9 @@ class GuiResearch extends GuiScreen {
 		}
 	}
 	def drawframe() = {
-		GlStateManager.enableBlend()
     GlStateManager.disableDepth()
+    GlStateManager.depthMask(false)
+		GlStateManager.enableBlend()
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		this.mc.getTextureManager().bindTexture(frameResourceLocation);
 		drawTexturedModalRect(portstartX, portstartY, 0, 0, frametextureX, frametextureY)
@@ -75,6 +76,7 @@ class GuiResearch extends GuiScreen {
 	def drawResearchs() = {
     GlStateManager.enableDepth()
     GlStateManager.depthFunc(GL11.GL_GEQUAL)
+    GlStateManager.pushMatrix()
     GlStateManager.translate(0.0,0.0,-200.0)
 		this.mc.getTextureManager().bindTexture(mapResourceLocation);
 		Gui.drawModalRectWithCustomSizedTexture(mapstartX, mapstartY, mapcutX, mapcutY, mapportX, mapportY,maptexturesize,maptexturesize);
@@ -96,6 +98,5 @@ class GuiResearch extends GuiScreen {
     val rs = Researchs.researchlist()
     for(rd<-rs)drawResearchinport(rd)
     GlStateManager.popMatrix();
-    GlStateManager.enableRescaleNormal();
 	}
 }
