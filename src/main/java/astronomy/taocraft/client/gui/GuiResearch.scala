@@ -84,17 +84,7 @@ class GuiResearch extends GuiScreen {
 		Gui.drawModalRectWithCustomSizedTexture(mapstartX, mapstartY, mapcutX, mapcutY, mapportX, mapportY,maptexturesize,maptexturesize);
     def drawResearchinport(r:Research) = {
       this.mc.getTextureManager().bindTexture(frameResourceLocation);
-      def rectcut(texturesize:Int,u:Int,v:Int) = {
-        Array(Math.max(0,r.researchmapX-texturesize/2-mapcutX)+mapstartX,
-            Math.max(0,r.researchmapY-texturesize/2-mapcutY)+mapstartY,
-            Math.max(0,mapcutX-(r.researchmapX-texturesize/2))+u,
-            Math.max(0,mapcutY-(r.researchmapY-texturesize/2))+v,
-            Math.min(texturesize,Math.min(r.researchmapX+texturesize/2-mapcutX,mapcutX+mapportX-(r.researchmapX-texturesize/2))),
-            Math.min(texturesize,Math.min(r.researchmapY+texturesize/2-mapcutY,mapcutY+mapportY-(r.researchmapY-texturesize/2)))
-            )
-      }
       drawTexturedModalRect(r.researchmapX-researchtexturesize/2-mapcutX+mapstartX,r.researchmapY-researchtexturesize/2-mapcutY+mapstartY,0,230,researchtexturesize,researchtexturesize)
-      GlStateManager.disableLighting(); //Forge: Make sure Lighting is disabled. Fixes MC-33065
       this.itemRender.renderItemIntoGUI(new ItemStack(Items.cookie), r.researchmapX-16/2-mapcutX+mapstartX, r.researchmapY-16/2-mapcutY+mapstartY)
     }
     GlStateManager.depthFunc(GL11.GL_LEQUAL)
