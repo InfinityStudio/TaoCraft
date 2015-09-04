@@ -19,6 +19,7 @@ object TaoCraft
   var events:ModEventHandler = new ModEventHandler;
   @SidedProxy  (clientSide = "astronomy.taocraft.client.ClientProxy", serverSide = "astronomy.taocraft.server.ServerProxy" )
   var proxy: CommonProxy=null;
+  var items:ModItems = null;
   @EventHandler
   def Preinit(e: FMLPreInitializationEvent ) = 
   {
@@ -30,6 +31,8 @@ object TaoCraft
   {
     proxy.registerKeyBindings;
     NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy.guis);
+    items = new ModItems
+    proxy.registerModels(items.Items)
   }
    
 
