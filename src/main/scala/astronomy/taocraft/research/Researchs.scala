@@ -3,6 +3,11 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.Minecraft;
 import scala.io._
+import org.json4s._;
+import org.json4s.native.JsonMethods._
+import com.google.gson._;
+import com.google.gson.stream._;
+import com.google.gson.reflect._;
 /**
  * @author XFeng
  */
@@ -15,7 +20,9 @@ object Researchs {
      val resourcemanager = Minecraft.getMinecraft().getResourceManager()
      val resource = resourcemanager.getResource(defaultresourceloca)
      val input = resource.getInputStream()
-     System.out.println(Source.fromInputStream(input,"utf8").mkString);
+     val jsonparser = new JsonParser()
+     val je = Source.fromInputStream(input,"utf8").mkString;
+     val jr = parse(je)
      new Research("taiji","taocraft.research.name.taiji","taocraft:taiji",250,450)::
      new Research("yuanqi","taocraft.research.name.yuanqi","minecraft:cookie",230,400)::
      new Research("bagua","taocraft.research.name.bagua","minecraft:cookie",270,400)::
