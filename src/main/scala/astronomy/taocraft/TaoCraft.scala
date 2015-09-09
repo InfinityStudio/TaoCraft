@@ -2,6 +2,7 @@ package astronomy.taocraft
 
 import net.minecraft.init.Blocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event._;
@@ -26,19 +27,21 @@ object TaoCraft
   var items:ModItems = null;
   var simplenetwork:SimpleNetworkWrapper = null;
   @EventHandler
-  def Preinit(e: FMLPreInitializationEvent ) = 
-  {
+  def Preinit(e: FMLPreInitializationEvent ) = {
     MinecraftForge.EVENT_BUS.register(events);
     FMLCommonHandler.instance().bus().register(events);
     simplenetwork=PacketDispatcher("taocraft");
   }
   @EventHandler
-  def init(e: FMLInitializationEvent ) = 
-  {
+  def init(e: FMLInitializationEvent ) = {
     proxy.registerKeyBindings;
     NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy.guis);
     items = new ModItems
     proxy.registerModels(items.Items)
+  }
+  @EventHandler
+  def serverinit(e:FMLServerStartedEvent) = {
+    PlayerResearchMP.world = MinecraftServer.getServer().worldServerForDimension(0)
   }
    
 

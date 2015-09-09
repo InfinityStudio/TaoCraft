@@ -25,7 +25,8 @@ class ModEventHandler {
   @SubscribeEvent
   def onPlayerLoggin(event:PlayerEvent.PlayerLoggedInEvent) {
     val mj = new MessageJson()
-    mj.jsonstr = Researchs.convertlinelisttojson(PlayerResearchMP.getlinelist(event.player))
-    TaoCraft.simplenetwork.sendTo(mj, event.player.asInstanceOf[EntityPlayerMP])
+    val player = event.player.asInstanceOf[EntityPlayerMP]
+    mj.jsonstr = Researchs.convertlinelisttojson(PlayerResearchMP.getlinelist(player))
+    TaoCraft.simplenetwork.sendTo(mj, player)
   }
 }
