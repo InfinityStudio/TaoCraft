@@ -25,3 +25,9 @@ class Researchline(
     ){
   var elefill=if (ele==null) element.map((a)=>a._1->0) else ele;
 }
+class Researchlinejson(){
+    var start:String = null
+    var end:String = null
+    var element:java.util.Map[String,Int] = null
+    var elefill:java.util.Map[String,Int] = null
+}
