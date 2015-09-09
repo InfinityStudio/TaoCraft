@@ -15,20 +15,13 @@ import com.google.gson.reflect._;
  */
 object Researchs {
   final val defaultresourceloca = new ResourceLocation("taocraft","research/defaultresearch.json")
-  var linelist:List[Researchline]=null
   def researchlist():List[Research] = {
-    defaultresearchlist();
-  }
-  def defaultresearchlist():List[Research] = {
      new Research("taiji","taocraft.research.name.taiji","taocraft:taiji",250,450)::
      new Research("yuanqi","taocraft.research.name.yuanqi","minecraft:cookie",230,400)::
      new Research("bagua","taocraft.research.name.bagua","minecraft:cookie",270,400)::
      Nil;
   }
   def researchlinelist():List[Researchline] = {
-    if(linelist==null)defaultresearchlinelist else linelist
-  }
-  def defaultresearchlinelist():List[Researchline] = {
     new Researchline("taiji","yuanqi",List("metalwater"->3,"fireearth"->3))::
     new Researchline("taiji","bagua",List("metalwater"->1,"waterwood"->1,"woodfire"->1,"fireearth"->1,"earthmetal"->1))::
     Nil

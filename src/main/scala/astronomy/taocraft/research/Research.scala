@@ -2,11 +2,7 @@ package astronomy.taocraft.research
 
 /**
  * @author XFeng
-o=-
  */
-
-
-
 class Research (
     val name:String,
     val text:String,
@@ -15,7 +11,6 @@ class Research (
     val researchmapY:Int,
     var state:Boolean = false
     ){
-  
 }
 class Researchline(
     val start:String,
