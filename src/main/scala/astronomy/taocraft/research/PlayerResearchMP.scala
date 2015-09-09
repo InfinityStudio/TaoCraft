@@ -11,9 +11,8 @@ import net.minecraft.world.WorldServer;
 /**
  * @author XFeng
  */
-
 object PlayerResearchMP {
-  var world:WorldServer = null
+  var world:WorldServer = null;
   var linelistmap = new HashMap[EntityPlayerMP,List[Researchline]]
   def getlinelist(player:EntityPlayerMP) = {
     
