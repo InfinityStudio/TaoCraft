@@ -44,6 +44,10 @@ object Researchs {
     def wrapline(r2:Researchlinejson):Researchline = {
       new Researchline(r2.start,r2.end,r2.element.asScala.toList,r2.elefill.asScala.toList)
     }
+    /* 建议在此处加上一个格式检查函数
+     * 以检查得到的json内容是否符合预定义的研究链串
+     * 可以考虑抛出异常
+     */
     val unwrapline:java.util.List[Researchlinejson] = gson.fromJson(linestring, new TypeToken[java.util.List[Researchlinejson]](){}.getType)
     unwrapline.asScala.toList.map { wrapline}
   }
