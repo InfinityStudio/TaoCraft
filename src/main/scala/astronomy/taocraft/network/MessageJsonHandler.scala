@@ -10,8 +10,9 @@ import net.minecraftforge.fml.relauncher.Side;
 class MessageJsonHandler extends IMessageHandler[MessageJson,IMessage]{
   def onMessage(message:MessageJson, ctx:MessageContext) = {
     if(ctx.side == Side.CLIENT){
+      println(message.jsonstr)
       PlayerResearchSP.linelist = Researchs.convertjsontolinelist(message.jsonstr)
-      //System.out.print(PlayerResearchSP.linelist.toString())
+      println(Researchs.convertlinelisttojson(PlayerResearchSP.linelist))
     }
     null
   }

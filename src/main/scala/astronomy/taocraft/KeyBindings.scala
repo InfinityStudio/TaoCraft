@@ -12,6 +12,7 @@ object KeyBindings
   var mainresearch:KeyBinding = null;
   def init()
   {
-    mainresearch = new KeyBinding("key.research", Keyboard.KEY_O, "key.categories.taoresearch");
+    mainresearch = new KeyBinding("key.research", Keyboard.KEY_O, "key.categories.taocraft");
+    ClientRegistry.registerKeyBinding(mainresearch);
   }
 }

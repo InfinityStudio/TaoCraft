@@ -88,7 +88,7 @@ class GuiResearch extends GuiScreen {
       this.itemRender.renderItemIntoGUI(new ItemStack(Item.getByNameOrId(r.texture)), r.researchmapX-16/2-mapcutX+mapstartX, r.researchmapY-16/2-mapcutY+mapstartY)
     }
     GlStateManager.depthFunc(GL11.GL_LEQUAL)
-    val rs = Researchs.researchlist()
+    val rs = Researchs.researchlist
     for(rd<-rs)drawResearchinport(rd)
     GlStateManager.popMatrix();
 	}

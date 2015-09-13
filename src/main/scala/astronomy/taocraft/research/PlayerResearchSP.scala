@@ -6,5 +6,5 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 @SideOnly(Side.CLIENT)
 object PlayerResearchSP {
-  var linelist:List[Researchline]=null
+  var linelist:Set[Researchline]=null
 }
