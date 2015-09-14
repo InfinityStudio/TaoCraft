@@ -5,8 +5,12 @@ import io.netty.buffer.ByteBuf;
 /**
  * @author XFeng
  */
-class MessageJson extends IMessage{
-  var jsonstr:String = null;
+class MessageJson(
+    var jsonstr:String
+    ) extends IMessage{
+  def this()= {
+    this(null)
+  }
   def fromBytes(bf:ByteBuf) = {
     jsonstr = ByteBufUtils.readUTF8String(bf)
     }
