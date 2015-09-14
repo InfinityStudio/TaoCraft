@@ -1,0 +1,8 @@
+{
+    "research":
+    {
+        "taiji":["taocraft.research.name.taiji","taocraft:taiji",250,450],
+        "yuanqi":["taocraft.research.name.yuanqi","minecraft:cookie",230,400],
+        "bagua":["taocraft.research.name.bagua","minecraft:cookie",270,400]
+    }
+}
