@@ -32,12 +32,12 @@ object Researchs {
       val r2 = new Researchlinejson();
       r2.start = r.start;
       r2.end = r.end;
-      r2.element = r.element.asJava;
-      r2.elefill = r.elefill.asJava;
+      r2.element = new java.util.HashMap(r.element.asJava);
+      r2.elefill = new java.util.HashMap(r.elefill.asJava);
       r2
     }
     val wrappedline = resline.map(wrapline).asJava
-    gson.toJson(wrappedline,new TypeToken[java.util.Set[Researchlinejson]](){}.getType)
+    gson.toJson(wrappedline,new TypeToken[java.util.HashSet[Researchline]](){}.getType)
   }
   def convertjsontolinelist(linestring:String):Set[Researchline] ={
     val gson = new Gson();
@@ -48,7 +48,7 @@ object Researchs {
      * 以检查得到的json内容是否符合预定义的研究链串
      * 可以考虑抛出异常com.google.gson.stream.MalformedJsonException
      */
-    val unwrapline:java.util.Set[Researchlinejson] = gson.fromJson(linestring, new TypeToken[java.util.Set[Researchlinejson]](){}.getType)
+    val unwrapline:java.util.HashSet[Researchlinejson] = gson.fromJson(linestring, new TypeToken[java.util.HashSet[Researchlinejson]](){}.getType)
     val a = unwrapline.asScala
     val b = a.toSet
     val c = b.map { wrapline}

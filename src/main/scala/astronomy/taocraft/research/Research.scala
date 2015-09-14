@@ -35,6 +35,6 @@ class Researchline(
 class Researchlinejson(){
     var start:String = null
     var end:String = null
-    var element:java.util.Map[String,Int] = null
-    var elefill:java.util.Map[String,Int] = null
+    var element:java.util.HashMap[String,Int] = null
+    var elefill:java.util.HashMap[String,Int] = null
 }
