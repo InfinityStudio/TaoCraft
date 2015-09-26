@@ -5,12 +5,13 @@ import astronomy.taocraft.item.food.RawElixir
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraft.creativetab.CreativeTabs
+
 /**
  * @author XFeng
  */
 class ModItems {
 
-  val Items = itemlist.toMap
+  val Items: Map[String, Item] = itemlist.toMap
 
   def iteminit[T <: Item](item: T, name: String) = {
     GameRegistry.registerItem(item, name)

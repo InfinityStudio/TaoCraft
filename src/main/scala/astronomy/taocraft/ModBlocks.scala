@@ -9,15 +9,18 @@ import net.minecraft.creativetab.CreativeTabs
  * @author Blealtan
  */
 class ModBlocks {
-  val Blocks = blocklist.toMap
+
+  val Blocks: Map[String, LeadOre] = blocklist.toMap
+
   def blockinit[T <: Block](block: T, name: String) = {
     GameRegistry.registerBlock(block, name)
     block.setUnlocalizedName(name)
     block.setCreativeTab(CreativeTabs.tabMisc)
     name -> block
   }
+
   def blocklist = {
-    blockinit(new LeadOre, "leadore")
+    blockinit(new LeadOre, "leadore") ::
     Nil
   }
 

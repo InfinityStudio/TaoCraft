@@ -9,5 +9,5 @@ import net.minecraftforge.fml.common.registry.GameRegistry
  */
 class RawElixir extends ItemFood(1, false){
   setAlwaysEdible()
-  setPotionEffect(Potion.poison.id, 2, 1, 0.9f)
+  setPotionEffect(Potion.poison.id, 10, 1, 0.5f)
 }
