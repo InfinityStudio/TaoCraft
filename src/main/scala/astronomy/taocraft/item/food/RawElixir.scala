@@ -1,7 +1,8 @@
 package astronomy.taocraft.item.food
 
-import net.minecraft.item.ItemFood
+import net.minecraft.item.{ItemStack, ItemFood}
 import net.minecraft.potion.Potion
+import net.minecraftforge.fml.common.registry.GameRegistry
 
 /**
  * @author Blealtan

@@ -18,8 +18,7 @@ class ItemChowrie extends Item {
   GameRegistry addRecipe(new ItemStack(this), "## ", " * ", " * ", Character.valueOf('#'), Items.string, Character.valueOf('*'), Items.stick)
 
   override def onItemUse(stack: ItemStack, playerIn: EntityPlayer, worldIn: World, pos: BlockPos,
-                         side: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean =
-  {
+                         side: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
     //!TODO: Start some tasks for the block referred to.
     stack damageItem(1, playerIn)
     true

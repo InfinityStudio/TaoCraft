@@ -13,9 +13,9 @@ class ModItems {
   val Items = itemlist.toMap
 
   def iteminit[T <: Item](item: T, name: String) = {
-    GameRegistry registerItem(item, name)
-    item setUnlocalizedName(name)
-    item setCreativeTab(CreativeTabs.tabMisc)
+    GameRegistry.registerItem(item, name)
+    item.setUnlocalizedName(name)
+    item.setCreativeTab(CreativeTabs.tabMisc)
     name -> item
   }
 
