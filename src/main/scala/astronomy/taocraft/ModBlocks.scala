@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs
  */
 class ModBlocks {
 
-  val Blocks: Map[String, LeadOre] = blocklist.toMap
+  val Blocks: Map[String, Block] = blocklist.toMap
 
   def blockinit[T <: Block](block: T, name: String) = {
     GameRegistry.registerBlock(block, name)

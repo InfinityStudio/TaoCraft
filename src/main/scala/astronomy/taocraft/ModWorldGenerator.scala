@@ -3,7 +3,7 @@ package astronomy.taocraft
 import java.util.Random
 
 import net.minecraft.block.Block
-import astronomy.taocraft.interface.IWorldGenBlock
+import astronomy.taocraft.interface.IGenerateInWorld
 import net.minecraft.world.World
 import net.minecraft.world.chunk.IChunkProvider
 import net.minecraftforge.fml.common.IWorldGenerator
@@ -17,12 +17,12 @@ import scala.collection.immutable.HashSet
  */
 class ModWorldGenerator extends IWorldGenerator {
 
-  var generators : Set[IWorldGenBlock] = new HashSet[IWorldGenBlock]
+  var generators : Set[IGenerateInWorld] = new HashSet[IGenerateInWorld]
 
   def execWorldGen(blocks: Map[String, Block]) : Unit = {
     for (blk <- blocks)
       blk._2 match {
-        case wgBlock: IWorldGenBlock =>
+        case wgBlock: IGenerateInWorld =>
           generators += wgBlock
         case _ =>
       }

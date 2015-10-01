@@ -8,6 +8,6 @@ import net.minecraft.world.chunk.IChunkProvider
 /**
  * @author Blealtan
  */
-trait IWorldGenBlock {
+trait IGenerateInWorld {
   def onWorldGen(random: Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkProvider, chunkProvider: IChunkProvider) : Unit
 }
