@@ -26,33 +26,43 @@ object Researchs {
     new Researchline("taiji","bagua",Map("metalwater"->1,"waterwood"->1,"woodfire"->1,"fireearth"->1,"earthmetal"->1))::
     Nil).toSet
   }
-  def convertlinelisttojson(resline:Set[Researchline]):String = {
+  def convertlinelisttojson(reslines:Set[Researchline]):String = {
+    //傻逼gson转换错误
     val gson = new Gson();
-    def wrapline(r:Researchline):Researchlinejson = {
-      val r2 = new Researchlinejson();
-      r2.start = r.start;
-      r2.end = r.end;
-      r2.element = new java.util.HashMap(r.element.asJava);
-      r2.elefill = new java.util.HashMap(r.elefill.asJava);
-      r2
+    def wrapline(r:Researchline):JsonElement = {
+      val rjson = new JsonObject();
+      rjson.addProperty("start", r.start);
+      rjson.addProperty("end", r.end);
+      def wrapelement(e:Map[String,Int]):JsonElement = {
+        val ejson = new JsonObject();
+        for(p<-e){
+          ejson.addProperty(p._1, p._2)
+        }
+        ejson
+      }
+      rjson.add("element", wrapelement(r.element));
+      rjson.add("elefill", wrapelement(r.elefill));
+      rjson
     }
-    val wrappedline = resline.map(wrapline).asJava
-    gson.toJson(wrappedline,new TypeToken[java.util.HashSet[Researchline]](){}.getType)
+    val resjson = new JsonArray();
+    for(resline<-reslines){
+      resjson.add(wrapline(resline));
+    }
+    resjson.toString()
   }
-  def convertjsontolinelist(linestring:String):Set[Researchline] ={
-    val gson = new Gson();
-    def wrapline(r2:Researchlinejson):Researchline = {
-      new Researchline(r2.start,r2.end,r2.element.asScala.toMap[String,Int],r2.elefill.asScala.toMap[String,Int])
+  def convertjsontolinelist(linestring:String):Set[Researchline] = {
+    //傻逼gson转换错误
+    val parser = new JsonParser();
+    val linejson = parser.parse(linestring).getAsJsonArray().asScala;
+    def wrapine(r:JsonElement):Researchline = {
+      val rp = r.getAsJsonObject;
+      def wrapelement(e:JsonElement):Map[String,Int] = {
+        val ep = e.getAsJsonObject.entrySet.asScala;
+        (for(s<-ep)yield s.getKey->s.getValue.getAsInt).toMap
+      }
+      new Researchline(rp.get("start").getAsString,rp.get("end").getAsString,wrapelement(rp.get("element")),wrapelement(rp.get("elefill")))
     }
-    /* 建议在此处加上一个格式检查函数
-     * 以检查得到的json内容是否符合预定义的研究链串
-     * 可以考虑抛出异常com.google.gson.stream.MalformedJsonException
-     */
-    val unwrapline:java.util.HashSet[Researchlinejson] = gson.fromJson(linestring, new TypeToken[java.util.HashSet[Researchlinejson]](){}.getType)
-    val a = unwrapline.asScala
-    val b = a.toSet
-    val c = b.map { wrapline}
-    c
+    (for(r<-linejson)yield wrapine(r)).toSet
   }
   def getunresearchednameset(resline:Set[Researchline]) = {
     for(line<-resline if (line.elefill!=line.element))yield line.end
