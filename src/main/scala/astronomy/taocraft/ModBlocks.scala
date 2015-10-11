@@ -1,20 +1,26 @@
 package astronomy.taocraft
+
+import astronomy.taocraft.block.LeadOre
 import net.minecraft.block.Block
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fml.common.registry.GameRegistry
+import net.minecraft.creativetab.CreativeTabs
+
 /**
- * @author XFeng
+ * @author Blealtan
  */
 class ModBlocks {
-  val Blocks = blocklist.toMap
+
+  val Blocks: Map[String, Block] = blocklist.toMap
+
   def blockinit[T <: Block](block: T, name: String) = {
-    GameRegistry.registerBlock(block, name);
-    block.setUnlocalizedName(name);
-    block.setCreativeTab(CreativeTabs.tabMisc);
+    GameRegistry.registerBlock(block, name)
+    block.setUnlocalizedName(name)
+    block.setCreativeTab(CreativeTabs.tabMisc)
     name -> block
   }
-  def blocklist = {
 
+  def blocklist = {
+    blockinit(new LeadOre, "leadore") ::
     Nil
   }
 
