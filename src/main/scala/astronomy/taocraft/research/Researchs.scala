@@ -26,6 +26,7 @@ object Researchs {
     new Researchline("taiji","bagua",Map("metalwater"->1,"waterwood"->1,"woodfire"->1,"fireearth"->1,"earthmetal"->1))::
     Nil).toSet
   }
+  val researchachilist = ResearchAchi.getdefAchiList();
   def convertlinelisttojson(reslines:Set[Researchline]):String = {
     //傻逼gson转换错误
     val gson = new Gson();
@@ -58,7 +59,7 @@ object Researchs {
       val rp = r.getAsJsonObject;
       def wrapelement(e:JsonElement):Map[String,Int] = {
         val ep = e.getAsJsonObject.entrySet.asScala;
-        (for(s<-ep)yield s.getKey->s.getValue.getAsInt).toMap
+        ep.map(s=>s.getKey->s.getValue.getAsInt).toMap
       }
       new Researchline(rp.get("start").getAsString,rp.get("end").getAsString,wrapelement(rp.get("element")),wrapelement(rp.get("elefill")))
     }
@@ -70,5 +71,40 @@ object Researchs {
   def getresearchednameset(resline:Set[Researchline]) = {
     val unre = for(line<-resline if (line.elefill!=line.element))yield line.end;
     for(res<-researchlist if !unre.contains(res.name))yield res.name
+  }
+  def convertachilisttojson(reslines:Set[ResearchAchievement]):String = {
+    val gson = new Gson();
+    def wrapline(r:ResearchAchievement):JsonElement = {
+      val rjson = new JsonObject();
+      rjson.addProperty("name", r.name);
+      def wrapelement(e:Map[String,Int]):JsonElement = {
+        val ejson = new JsonObject();
+        for(p<-e){
+          ejson.addProperty(p._1, p._2)
+        }
+        ejson
+      }
+      rjson.add("element", wrapelement(r.element));
+      rjson
+    }
+    val resjson = new JsonArray();
+    for(resline<-reslines){
+      resjson.add(wrapline(resline));
+    }
+    resjson.toString()
+  }
+  def convertjsontoachilist(linestring:String):Set[ResearchAchievement] = {
+    //傻逼gson转换错误
+    val parser = new JsonParser();
+    val linejson = parser.parse(linestring).getAsJsonArray().asScala;
+    def wrapine(r:JsonElement):ResearchAchievement = {
+      val rp = r.getAsJsonObject;
+      def wrapelement(e:JsonElement):Map[String,Int] = {
+        val ep = e.getAsJsonObject.entrySet.asScala;
+        ep.map(s=>s.getKey->s.getValue.getAsInt).toMap
+      }
+      new ResearchAchievement(rp.get("name").getAsString,wrapelement(rp.get("element")),null)
+    }
+    (for(r<-linejson)yield wrapine(r)).toSet
   }
 }

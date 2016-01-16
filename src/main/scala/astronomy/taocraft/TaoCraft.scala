@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper
 /**
  * @author xfeng
  */
-@Mod(modid = "taocraft", name = "TaoCraft", version = "0.0.w", modLanguage = "scala")
+//@Mod(modid = "taocraft", name = "TaoCraft", version = "0.0.w", modLanguage = "scala")
 object TaoCraft 
 {
   var events:ModEventHandler = new ModEventHandler
