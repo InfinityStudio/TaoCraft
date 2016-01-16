@@ -32,9 +32,3 @@ class Researchline(
    this.equals(that)&&this.element.equals(that.element)&&this.elefill.equals(that.elefill)
  }
 }
-class Researchlinejson(){
-    var start:String = null
-    var end:String = null
-    var element:java.util.Map[String,Int] = null
-    var elefill:java.util.Map[String,Int] = null
-}

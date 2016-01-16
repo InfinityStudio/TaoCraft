@@ -24,7 +24,7 @@ object PlayerResearchMP {
       val uufreader = new FileReader(uufile);
       val buff = new Array[Char](16384);
       uufreader.read(buff);
-      val linestr = new String(buff);
+      val linestr = new String(buff).trim();
       uufreader.close();
       Researchs.convertjsontolinelist(linestr)
     } else {

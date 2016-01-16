@@ -31,7 +31,6 @@ class LeadOre extends Block(Material.rock) with IGenerateInWorld {
 
 
   override def onWorldGen(random: Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkProvider, chunkProvider: IChunkProvider) : Unit = {
-    if (world.provider.getDimensionId == 0)
       for (i <- 1 to random.nextInt(5)) {
         val posX: Int = (chunkX << 4) + random.nextInt(16)
         val posY: Int = random.nextInt(36) + 20
